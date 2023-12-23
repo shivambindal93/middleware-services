@@ -1,0 +1,5 @@
+notification-service1/node_modules/
+notification-service2/node_modules/
+order-service/node_modules/
+product-service/node_modules/
+node_modules

@@ -1,0 +1,15 @@
+{
+  "name": "notification-service2",
+  "version": "1.0.0",
+  "description": "nagp service middleware assignment",
+  "scripts": {
+    "start": "node src/receiver.js",
+    "watch": "node --watch src/receiver.js"
+  },
+  "author": "shivam bindal",
+  "license": "ISC",
+  "dependencies": {
+    "amqplib": "^0.10.3",
+    "rascal": "^17.0.1"
+  }
+}

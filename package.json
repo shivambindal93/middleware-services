@@ -1,0 +1,14 @@
+{
+  "name": "nagp",
+  "version": "1.0.0",
+  "description": "nagp service middleware assignment",
+  "scripts": {
+    "start": "concurrently \"cd product-service && npm run start\" \"cd order-service && npm run start\" \"cd notification-service1 && npm run start\" \"cd notification-service2 && npm run start\"",
+    "prettier": "npx prettier --write **"
+  },
+  "author": "shivam bindal",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

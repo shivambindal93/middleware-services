@@ -1,0 +1,18 @@
+{
+  "name": "order-service",
+  "version": "1.0.0",
+  "description": "nagp service middleware assignment",
+  "scripts": {
+    "start": "node src/order-service.js",
+    "watch": "node --watch src/order-service.js"
+  },
+  "author": "shivam bindal",
+  "license": "ISC",
+  "dependencies": {
+    "@grpc/grpc-js": "^1.9.13",
+    "@grpc/proto-loader": "^0.7.10",
+    "amqplib": "^0.10.3",
+    "rascal": "^17.0.1",
+    "uuid": "^9.0.1"
+  }
+}

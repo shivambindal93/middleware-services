@@ -1,0 +1,41 @@
+{
+  "vhosts": {
+    "/": {
+      "connection": {
+        "url": "amqp://guest:guest@localhost:5672/"
+      },
+      "exchanges": {
+        "fanout_type_exchange": {
+          "type": "fanout",
+          "options": {
+            "arguments": {
+              "durable": true,
+              "autoDelete": false
+            }
+          }
+        }
+      },
+      "queues": {
+        "fanout_queue_notification_service_1": {
+          "assert": true,
+          "options": {}
+        }
+      },
+      "bindings": [
+        "fanout_type_exchange -> fanout_queue_notification_service_1"
+      ],
+      "subscriptions": {
+        "fanout_sub_notification_service_1": {
+          "queue": "fanout_queue_notification_service_1",
+          "prefetch": 1,
+          "contentType": "application/json"
+        }
+      },
+      "publications": {
+        "fanout_pub_notification_service_1": {
+          "exchange": "fanout_type_exchange"
+        }
+      }
+    }
+  }
+}

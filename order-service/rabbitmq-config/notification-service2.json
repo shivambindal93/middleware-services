@@ -1,0 +1,64 @@
+{
+  "vhosts": {
+    "/": {
+      "connection": {
+        "url": "amqp://guest:guest@localhost:5672/"
+      },
+      "exchanges": {
+        "topic_type_exchange": {
+          "type": "topic",
+          "options": {
+            "arguments": {
+              "durable": true,
+              "autoDelete": false
+            }
+          }
+        },
+        "fanout_type_exchange": {
+          "type": "fanout",
+          "options": {
+            "arguments": {
+              "durable": true,
+              "autoDelete": false
+            }
+          }
+        }
+      },
+      "queues": {
+        "topic_queue_notification_service_2": {
+          "assert": true,
+          "options": {}
+        },
+        "fanout_queue_notification_service_2": {
+          "assert": true,
+          "options": {}
+        }
+      },
+      "bindings": [
+        "topic_type_exchange[key.*] -> topic_queue_notification_service_2",
+        "fanout_type_exchange -> fanout_queue_notification_service_2"
+      ],
+      "subscriptions": {
+        "topic_sub_notification_service_2": {
+          "queue": "topic_queue_notification_service_2",
+          "prefetch": 1,
+          "contentType": "application/json"
+        },
+        "fanout_sub_notification_service_2": {
+          "queue": "fanout_queue_notification_service_2",
+          "prefetch": 1,
+          "contentType": "application/json"
+        }
+      },
+      "publications": {
+        "topic_pub_notification_service_2": {
+          "exchange": "topic_type_exchange",
+          "routingKey": "key.*"
+        },
+        "fanout_pub_notification_service_2": {
+          "exchange": "fanout_type_exchange"
+        }
+      }
+    }
+  }
+}
