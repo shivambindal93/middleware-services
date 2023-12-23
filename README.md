@@ -50,49 +50,67 @@ Notification Service 2 subscribes to both order creation and update events and p
 
 1. Clone the repository:
 2. Install dependencies for each service:
-    # Product Service
-    cd product-service
-    npm install
-    
-    # Order Service
-    cd order-service
-    npm install
-    
-    # Notification Service 1
-    cd notification-service1
-    npm install
-    
-    # Notification Service 2
-    cd notification-service2
-    npm install
+
+   # Product Service
+
+   cd product-service
+   npm install
+
+   # Order Service
+
+   cd order-service
+   npm install
+
+   # Notification Service 1
+
+   cd notification-service1
+   npm install
+
+   # Notification Service 2
+
+   cd notification-service2
+   npm install
 
 ### Configuration
+
 Update the RabbitMQ configuration URLs in the rabbitmq-config directory for each service.
 
 ### Usage
+
 Start each service using the following command:
-  # Product Service
-  cd product-service
-  npm start
-  
-  # Order Service
-  cd order-service
-  npm start
-  
-  # Notification Service 1
-  cd notification-service1
-  npm start
-  
-  # Notification Service 2
-  cd notification-service2
-  npm start
 
-  ## Place Order
-  To place an order, make a gRPC call to the Product Service:
-  # Example Place Order Request
-      grpcurl -plaintext -d '{"id": "1", "color": "blue", "description": "Sample Order", "price": 49.99}' localhost:50051 order.OrderService/PlaceOrder
+# Product Service
 
-  ## Update Order
-  To update an order, make a gRPC call to the Product Service:
-  # Example Update Order Request
-      grpcurl -plaintext -d '{"id": "1", "color": "red", "description": "Updated Order", "price": 59.99}' localhost:50051 order.OrderService/UpdateOrder
+cd product-service
+npm start
+
+# Order Service
+
+cd order-service
+npm start
+
+# Notification Service 1
+
+cd notification-service1
+npm start
+
+# Notification Service 2
+
+cd notification-service2
+npm start
+
+## Place Order
+
+To place an order, make a gRPC call to the Product Service:
+
+# Example Place Order Request
+
+      grpcurl -plaintext -d '{"id": "1", "color": "blue", "description": "Sample Order", "price": 49.99}' localhost:50051 order.Order/PlaceOrder
+
+## Update Order
+
+To update an order, make a gRPC call to the Product Service:
+
+# Example Update Order Request
+
+      grpcurl -plaintext -d '{"id": "1", "color": "red", "description": "Updated Order", "price": 59.99}' localhost:50051 order.Order/UpdateOrder
