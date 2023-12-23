@@ -107,6 +107,9 @@ To place an order, make a gRPC call to the Product Service:
 
       grpcurl -plaintext -d '{"id": "1", "color": "blue", "description": "Sample Order", "price": 49.99}' localhost:50051 order.Order/PlaceOrder
 
+or use Postman to hit a grpc request and order.proto file (nagp_assignment\product-service\protos\order.proto)
+![Alt text](image.png)
+
 ## Update Order
 
 To update an order, make a gRPC call to the Product Service:
@@ -114,3 +117,6 @@ To update an order, make a gRPC call to the Product Service:
 # Example Update Order Request
 
       grpcurl -plaintext -d '{"id": "1", "color": "red", "description": "Updated Order", "price": 59.99}' localhost:50051 order.Order/UpdateOrder
+
+or use Postman to hit a grpc request and order.proto file (nagp_assignment\product-service\protos\order.proto)
+![Alt text](image-1.png)
