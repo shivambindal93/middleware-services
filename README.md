@@ -1,6 +1,7 @@
 # RabbitMq GRPC NAGP Assignment
 
 This project demonstrates a microservices architecture with services for Product, Order, and Notification using RabbitMq for communication.
+https://github.com/shivambindal93/nagp-grpc-rabbitmq
 
 ## Table of Contents
 
