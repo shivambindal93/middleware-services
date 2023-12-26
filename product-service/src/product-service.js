@@ -1,3 +1,4 @@
+require("dotenv").config();
 const grpc = require("@grpc/grpc-js");
 const protoLoader = require("@grpc/proto-loader");
 const PROTO_PATH = "./protos/order.proto";
@@ -12,7 +13,7 @@ const packageDefinition = protoLoader.loadSync(PROTO_PATH, {
 const productServiceProto = grpc.loadPackageDefinition(packageDefinition).order;
 
 const orderServiceClient = new productServiceProto.Order(
-  "localhost:50052",
+  process.env.ORDER_SERVICE_URL || "localhost:50052",
   grpc.credentials.createInsecure()
 );
 

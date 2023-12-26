@@ -7,6 +7,7 @@ class RabbitMqBroker {
     if (!this.brokers[brokerKey]) {
       try {
         console.log(`Creating a new broker instance for config: ${brokerKey}`);
+        config.vhosts["/"].connection.url = process.env.RABBITMQ_URL;
         this.brokers[brokerKey] = await rascalBroker.create(config);
         return this.brokers[brokerKey];
       } catch (e) {

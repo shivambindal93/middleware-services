@@ -74,7 +74,7 @@ Notification Service 2 subscribes to both order creation and update events and p
 
 ### Configuration
 
-Update the RabbitMQ configuration URLs in the rabbitmq-config directory for each service.
+Update the RabbitMQ configuration URLs in the rabbitmq-config directory for each service or update the PORT, RABBITMQ_URL, ORDER_SERVICE_URL in dev.env file.
 
 ### Usage
 

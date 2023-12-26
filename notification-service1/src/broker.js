@@ -7,6 +7,7 @@ class RabbitMqBroker {
     if (!this.broker) {
       try {
         console.log("creating new object");
+        config.vhosts["/"].connection.url = process.env.RABBITMQ_URL;
         this.broker = await rascalBroker.create(config);
         return this.broker;
       } catch (e) {
