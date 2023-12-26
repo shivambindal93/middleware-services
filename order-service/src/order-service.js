@@ -1,3 +1,4 @@
+require("dotenv").config();
 const grpc = require("@grpc/grpc-js");
 const protoLoader = require("@grpc/proto-loader");
 const uuid = require("uuid");

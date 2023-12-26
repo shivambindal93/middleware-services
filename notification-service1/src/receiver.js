@@ -1,3 +1,4 @@
+require("dotenv").config();
 const RabbitMqBroker = require("./broker");
 const Rascal = require("rascal");
 // RabbitMq config
