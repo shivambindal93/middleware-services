@@ -46,6 +46,10 @@ Notification Service 2 subscribes to both order creation and update events and p
 
 - Node.js and npm
 - RabbitMQ server
+  (To start RabbitMQ on docker you can refer https://www.architect.io/blog/2021-01-19/rabbitmq-docker-tutorial/ it bears the docker command to pull RabbitMq Image with Management Plugin and start the same)
+  Docker commands used are
+  - docker pull rabbitmq:3-management
+  - docker run --rm -it -p 15672:15672 -p 5672:5672 rabbitmq:3-management
 
 ### Installation
 
