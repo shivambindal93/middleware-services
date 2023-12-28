@@ -7,11 +7,15 @@ service Order {
   rpc UpdateOrder (UpdateOrderRequest) returns (UpdateOrderResponse);
 }
 
-message PlaceOrderRequest {
+message Product {
   string id = 1;
   string color = 2;
   string description = 3;
   float price = 4;
+}
+
+message PlaceOrderRequest {
+  repeated Product products = 1;
 }
 
 message PlaceOrderResponse {
@@ -20,10 +24,8 @@ message PlaceOrderResponse {
 }
 
 message UpdateOrderRequest {
-  string id = 1;
-  string color = 2;
-  string description = 3;
-  float price = 4;
+  repeated Product products = 1;
+  string orderId = 2;
 }
 
 message UpdateOrderResponse {

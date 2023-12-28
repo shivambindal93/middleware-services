@@ -53,49 +53,63 @@ const OrderEventType = Object.freeze({
 });
 server.addService(orderServiceProto.Order.service, {
   PlaceOrder: (call, callback) => {
-    console.log("place order request", call.request);
-    const { id, color, description, price } = call.request;
-    const orderId = uuid.v4();
-    const order = {
-      orderId,
-      id,
-      color,
-      description,
-      price
-    };
-    orders.push(order);
-    saveOrders();
-    console.log("Order placed:", order);
-    publishOrderEvent(OrderEventType.CREATE, {
-      orderId,
-      id,
-      color,
-      description,
-      price
-    });
-    callback(null, { orderId, message: "Order placed successfully." });
+    try {
+      console.log("place order request", call.request);
+      const products = call.request.products;
+      const orderId = uuid.v4();
+      const order = {
+        orderId,
+        products
+      };
+      orders.push(order);
+      saveOrders();
+      console.log("Order placed:", order);
+      publishOrderEvent(OrderEventType.CREATE, {
+        orderId,
+        products
+      });
+      callback(null, { orderId, message: "Order placed successfully." });
+    } catch (e) {
+      console.error("error occured in place order", error);
+      callback({
+        code: grpc.status.INTERNAL,
+        details: "Internal Server Error"
+      });
+    }
   },
 
   UpdateOrder: (call, callback) => {
-    console.log("update order request", call.request);
-    const { id, color, description, price } = call.request;
-    const existingOrder = orders.find((order) => order.id === id);
+    try {
+      console.log("update order request", call.request);
+      const products = call.request.products;
+      const orderId = call.request.orderId;
+      const existingOrder = orders.find((order) => order.orderId === orderId);
 
-    if (existingOrder) {
-      existingOrder.color = color;
-      existingOrder.description = description;
-      existingOrder.price = price;
-      saveOrders();
-      console.log("Order updated:", existingOrder);
-      publishOrderEvent(OrderEventType.UPDATE, {
-        id,
-        color,
-        description,
-        price
+      if (existingOrder) {
+        products.forEach((product) => {
+          let existingProduct = existingOrder.products.find((product) => product.id === product.id);
+          if (existingProduct) {
+            existingProduct = {
+              ...existingProduct,
+              ...product
+            };
+          }
+        });
+        saveOrders();
+        console.log("Order updated:", existingOrder);
+        publishOrderEvent(OrderEventType.UPDATE, {
+          products
+        });
+        callback(null, { orderId: existingOrder.orderId, message: "Order updated successfully." });
+      } else {
+        callback({ code: grpc.status.NOT_FOUND, details: "Order not found." });
+      }
+    } catch (e) {
+      console.error("error occured in update order", error);
+      callback({
+        code: grpc.status.INTERNAL,
+        details: "Internal Server Error"
       });
-      callback(null, { orderId: id, message: "Order updated successfully." });
-    } else {
-      callback({ code: grpc.status.NOT_FOUND, details: "Order not found." });
     }
   }
 });
@@ -115,12 +129,12 @@ async function publishOrderEvent(eventType, eventData) {
   const broker1 = await RabbitMqBroker.getBroker(withDefaultConfig1, "notificationService1");
   const broker2 = await RabbitMqBroker.getBroker(withDefaultConfig2, "notificationService2");
   try {
-    let promises = [];
+    const promises = [];
     if (eventType === OrderEventType.CREATE) {
-      promises.push(await broker1.publish("fanout_pub_notification_service_1", eventData));
-      promises.push(await broker2.publish("fanout_pub_notification_service_2", eventData));
+      promises.push(broker1.publish("fanout_pub_notification_service_1", eventData));
+      promises.push(broker2.publish("fanout_pub_notification_service_2", eventData));
     } else if (eventType === OrderEventType.UPDATE) {
-      promises.push(await broker2.publish("topic_pub_notification_service_2", eventData));
+      promises.push(broker2.publish("topic_pub_notification_service_2", eventData));
     }
     await Promise.all(promises);
     console.log(`Event published: ${eventType}`);

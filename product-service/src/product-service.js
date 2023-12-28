@@ -22,8 +22,8 @@ const server = new grpc.Server();
 server.addService(productServiceProto.Order.service, {
   PlaceOrder: (call, callback) => {
     console.log("place order request", call.request);
-    const { id, color, description, price } = call.request;
-    orderServiceClient.PlaceOrder({ id, color, description, price }, (error, response) => {
+    const products = call.request.products;
+    orderServiceClient.PlaceOrder({ products }, (error, response) => {
       if (error) {
         console.error("Error placing order:", error);
         callback({
@@ -38,8 +38,9 @@ server.addService(productServiceProto.Order.service, {
   },
   UpdateOrder: (call, callback) => {
     console.log("update order request", call.request);
-    const { id, color, description, price } = call.request;
-    orderServiceClient.UpdateOrder({ id, color, description, price }, (error, response) => {
+    const products = call.request.products;
+    const orderId = call.request.orderId;
+    orderServiceClient.UpdateOrder({ products, orderId }, (error, response) => {
       if (error) {
         console.error("Error updating order:", error);
         callback({
