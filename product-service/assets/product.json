@@ -1,0 +1,62 @@
+[
+  {
+    "id": "2f47a90b-520d-4c60-9b8c-25b9f4bbf2b3",
+    "color": "blue",
+    "description": "Mesa Monitor Stand - (Red)",
+    "price": 29.99
+  },
+  {
+    "id": "d290f1ee-6c54-4b01-90e6-d701748f0851",
+    "color": "red",
+    "description": "Mesa Monitor Stand - (Blue)",
+    "price": 39.99
+  },
+  {
+    "id": "f47b901b-e447-4a5a-9ed8-5bde7e3f12ec",
+    "color": "green",
+    "description": "Morph Foldable Deskmat with Laptop Stand",
+    "price": 49.99
+  },
+  {
+    "id": "92a3a612-95e2-4bfe-8f5b-724762f8568b",
+    "color": "yellow",
+    "description": "Cirque Phone and Pen Stand - (Blue)",
+    "price": 19.99
+  },
+  {
+    "id": "baa80c6d-3d1d-4dd6-b77b-270d868bec2f",
+    "color": "orange",
+    "description": "Brown-Navy SHIFT Desk Mat",
+    "price": 59.99
+  },
+  {
+    "id": "f6d27d48-8913-45f1-94af-9e6a80e7bb52",
+    "color": "purple",
+    "description": "Arete Laptop Stand - (Ivory)",
+    "price": 79.99
+  },
+  {
+    "id": "7246fc2a-e37b-4f9d-8a02-7e3f31878fe5",
+    "color": "pink",
+    "description": "Mount Adjustable Phone Stand - (Green)",
+    "price": 34.99
+  },
+  {
+    "id": "04f94c82-5879-45cc-bf8a-3ce27c8b8c3d",
+    "color": "brown",
+    "description": "Cirque Phone and Pen Stand - (Red)",
+    "price": 44.99
+  },
+  {
+    "id": "c902a61d-96a8-46f1-894d-32587c8e4374",
+    "color": "black",
+    "description": "Cirque Phone and Pen Stand - (Ivory)",
+    "price": 64.99
+  },
+  {
+    "id": "b4d6c1a2-eab7-40a5-a19f-c20c2262627d",
+    "color": "white",
+    "description": "Striate Wooden Tray",
+    "price": 54.99
+  }
+]
