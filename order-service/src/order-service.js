@@ -86,13 +86,12 @@ server.addService(orderServiceProto.Order.service, {
       const existingOrder = orders.find((order) => order.orderId === orderId);
 
       if (existingOrder) {
-        products.forEach((product) => {
-          let existingProduct = existingOrder.products.find((product) => product.id === product.id);
+        products.forEach((updateProduct) => {
+          let existingProduct = existingOrder.products.find(
+            (product) => product.id === updateProduct.id
+          );
           if (existingProduct) {
-            existingProduct = {
-              ...existingProduct,
-              ...product
-            };
+            Object.assign(existingProduct, updateProduct);
           }
         });
         saveOrders();
